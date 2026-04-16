@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>まーぼうろ帝国 | たぶんおいしい</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --dark: #0d0d0f;
+      --dark2: #16161a;
+      --gold: #c8a84b;
+      --gold-light: #f0d070;
+      --cream: #f5f0e8;
+      --red: #c0392b;
+      --night: #1a1a2e;
+    }
+
+    body {
+      font-family: 'Noto Sans JP', 'Hiragino Maru Gothic Pro', sans-serif;
+      background: var(--dark);
+      color: var(--cream);
+      overflow-x: hidden;
+    }
+
+    /* ====== ファーストビュー（深夜2時テーマ） ====== */
+    .hero-night {
+      min-height: 100vh;
+      background: radial-gradient(ellipse at 30% 40%, #1a1a3e 0%, #0a0a14 60%, #000 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 20px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .stars {
+      position: absolute; inset: 0; pointer-events: none;
+    }
+    .star {
+      position: absolute;
+      width: 2px; height: 2px;
+      background: #fff;
+      border-radius: 50%;
+      animation: twinkle var(--d, 3s) ease-in-out infinite alternate;
+    }
+    @keyframes twinkle { from { opacity: .1; } to { opacity: .9; } }
+
+    .moon {
+      font-size: 80px;
+      margin-bottom: 16px;
+      filter: drop-shadow(0 0 30px #b8c8ff);
+      animation: moonFloat 6s ease-in-out infinite;
+    }
+    @keyframes moonFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    .hero-sub {
+      font-size: 13px;
+      letter-spacing: .4em;
+      color: #8888aa;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+    }
+    .hero-title {
+      font-size: clamp(52px, 14vw, 96px);
+      font-weight: 900;
+      background: linear-gradient(135deg, #c8a84b 0%, #f0d070 40%, #c8a84b 70%, #fff5c0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: .08em;
+      line-height: 1.05;
+      text-shadow: none;
+      filter: drop-shadow(0 4px 20px rgba(200,168,75,.4));
+    }
+    .hero-subtitle {
+      font-size: clamp(14px, 3.5vw, 20px);
+      color: #aaa8c0;
+      margin-top: 12px;
+      letter-spacing: .1em;
+    }
+    .hero-subtitle span {
+      color: var(--gold-light);
+      font-weight: 700;
+    }
+
+    .hero-img {
+      margin: 32px 0 20px;
+      width: 100%;
+      max-width: 380px;
+      border-radius: 20px;
+      box-shadow: 0 0 60px rgba(100,100,200,.3), 0 0 120px rgba(100,100,200,.1);
+      border: 1px solid rgba(200,168,75,.2);
+    }
+
+    .hero-copy {
+      font-size: 18px;
+      color: #c8a84b;
+      font-style: italic;
+      margin-bottom: 8px;
+      letter-spacing: .06em;
+    }
+    .hero-fine {
+      font-size: 11px;
+      color: #555566;
+      margin-bottom: 32px;
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 28px;
+      font-size: 12px;
+      color: #444458;
+      letter-spacing: .2em;
+      animation: bounce 2s ease-in-out infinite;
+    }
+    @keyframes bounce { 0%,100%{ transform:translateY(0)} 50%{transform:translateY(6px)} }
+
+    /* ====== セクション共通 ====== */
+    section { padding: 72px 20px; max-width: 720px; margin: 0 auto; }
+
+    .section-eyebrow {
+      font-size: 11px;
+      letter-spacing: .4em;
+      color: var(--gold);
+      text-align: center;
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(26px, 6vw, 40px);
+      font-weight: 900;
+      text-align: center;
+      margin-bottom: 36px;
+      line-height: 1.3;
+    }
+
+    /* ====== まーぼう伝説 ====== */
+    .legend-bg {
+      background: var(--dark2);
+      padding: 72px 20px;
+    }
+    .legend-inner { max-width: 680px; margin: 0 auto; }
+
+    .profile-card {
+      background: linear-gradient(135deg, #1c1c24, #12121a);
+      border: 1px solid rgba(200,168,75,.25);
+      border-radius: 20px;
+      padding: 32px;
+      display: flex;
+      align-items: flex-start;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+    .profile-img {
+      width: 110px; height: 110px; border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--gold);
+      flex-shrink: 0;
+      filter: sepia(.1) brightness(.95);
+    }
+    .profile-body {}
+    .profile-name {
+      font-size: 24px; font-weight: 900; color: var(--gold-light);
+      margin-bottom: 4px;
+    }
+    .profile-meta {
+      font-size: 12px; color: #666688; margin-bottom: 12px;
+      letter-spacing: .1em;
+    }
+    .profile-bio {
+      font-size: 14px; line-height: 1.9; color: #b8b8cc;
+    }
+    .profile-bio strong { color: var(--gold-light); }
+
+    .legend-stat {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 24px;
+    }
+    .stat-box {
+      background: rgba(200,168,75,.07);
+      border: 1px solid rgba(200,168,75,.15);
+      border-radius: 12px;
+      padding: 16px 12px;
+      text-align: center;
+    }
+    .stat-num { font-size: 28px; font-weight: 900; color: var(--gold-light); }
+    .stat-unit { font-size: 11px; color: #666688; margin-top: 4px; }
+
+    /* ====== 商品ラインナップ ====== */
+    .lineup-bg { background: #0a0a0c; padding: 72px 20px; }
+    .lineup-inner { max-width: 720px; margin: 0 auto; }
+
+    .lineup-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .product-card {
+      background: linear-gradient(135deg, #141418, #0e0e12);
+      border: 1px solid rgba(200,168,75,.2);
+      border-radius: 20px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(200,168,75,.15);
+    }
+    .product-card.featured {
+      border-color: var(--gold);
+      grid-template-columns: 1fr;
+    }
+    .product-card.featured .product-img { width: 100%; max-height: 300px; object-fit: cover; }
+    .product-img {
+      width: 200px; height: 100%;
+      object-fit: cover;
+      filter: brightness(.9);
+    }
+    .product-body { padding: 24px 20px; }
+    .product-tag {
+      display: inline-block;
+      font-size: 10px; letter-spacing: .2em;
+      color: #000; background: var(--gold);
+      padding: 3px 10px; border-radius: 4px;
+      margin-bottom: 10px; font-weight: 700;
+    }
+    .product-tag.night { background: #4a4a80; color: #c8c8ff; }
+    .product-tag.new { background: var(--red); color: #fff; }
+    .product-name { font-size: 22px; font-weight: 900; margin-bottom: 8px; line-height: 1.2; }
+    .product-price {
+      font-size: 24px; font-weight: 900;
+      color: var(--gold-light); margin-bottom: 10px;
+    }
+    .product-price .tax { font-size: 12px; color: #666688; }
+    .product-desc { font-size: 13px; line-height: 1.9; color: #9090a8; }
+    .product-desc strong { color: var(--cream); }
+    .product-cta {
+      display: inline-block;
+      margin-top: 16px;
+      background: linear-gradient(135deg, var(--gold), #a07830);
+      color: #000;
+      font-size: 13px; font-weight: 700;
+      padding: 10px 24px; border-radius: 8px;
+      text-decoration: none;
+      letter-spacing: .05em;
+    }
+    @media (max-width: 540px) {
+      .product-card { grid-template-columns: 1fr; }
+      .product-img { width: 100%; height: 200px; }
+    }
+
+    /* ====== 深夜2時セクション ====== */
+    .midnight-bg {
+      background: radial-gradient(ellipse at center, #0d0d1e 0%, #050508 100%);
+      padding: 80px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .midnight-bg::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(255,255,255,.01) 2px,
+        rgba(255,255,255,.01) 4px
+      );
+    }
+    .midnight-inner { max-width: 620px; margin: 0 auto; position: relative; }
+    .midnight-time {
+      font-size: clamp(64px, 16vw, 110px);
+      font-weight: 900;
+      color: #1a1a30;
+      line-height: 1;
+      margin-bottom: -20px;
+      text-shadow: 0 0 80px rgba(100,100,255,.4);
+      letter-spacing: .05em;
+    }
+    .midnight-img {
+      width: 100%; max-width: 400px;
+      border-radius: 16px;
+      margin: 20px auto;
+      display: block;
+      box-shadow: 0 0 80px rgba(60,60,160,.4);
+      filter: brightness(.85) contrast(1.1);
+    }
+    .midnight-copy {
+      font-size: clamp(20px, 5vw, 32px);
+      font-weight: 900;
+      color: var(--cream);
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+    .midnight-copy em {
+      font-style: normal;
+      background: linear-gradient(135deg, #6060b0, #a0a0e0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .midnight-sub {
+      font-size: 13px; color: #555570; line-height: 1.9;
+    }
+    .midnight-disclaimer {
+      margin-top: 20px;
+      font-size: 10px; color: #333348;
+      line-height: 1.7;
+      border: 1px solid #222235;
+      border-radius: 8px;
+      padding: 12px;
+    }
+
+    /* ====== 姉妹商品 ====== */
+    .sibling-bg { background: #0c0c10; padding: 72px 20px; }
+    .sibling-inner { max-width: 720px; margin: 0 auto; }
+    .sibling-img {
+      width: 100%; border-radius: 16px;
+      box-shadow: 0 8px 40px rgba(0,0,0,.5);
+      margin-bottom: 24px;
+    }
+
+    /* ====== ご利益コーナー ====== */
+    .goriyaku-bg {
+      background: linear-gradient(135deg, #1a0a0a, #0a0808);
+      padding: 72px 20px;
+      text-align: center;
+    }
+    .goriyaku-inner { max-width: 600px; margin: 0 auto; }
+    .goriyaku-icon { font-size: 64px; margin-bottom: 16px; }
+    .goriyaku-title {
+      font-size: clamp(28px, 7vw, 48px);
+      font-weight: 900;
+      color: #e8c060;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+    .goriyaku-body {
+      font-size: 15px; line-height: 2.1;
+      color: #9090a0; margin-bottom: 28px;
+    }
+    .goriyaku-body strong { color: #e8c060; }
+    .goriyaku-body .disclaimer {
+      font-size: 11px; color: #444455;
+      margin-top: 8px; display: block;
+    }
+    .goriyaku-cert {
+      background: rgba(232,192,96,.07);
+      border: 1px solid rgba(232,192,96,.2);
+      border-radius: 12px;
+      padding: 20px 24px;
+      font-size: 13px; color: #807060;
+      line-height: 1.8;
+      font-style: italic;
+    }
+
+    /* ====== Q&A ====== */
+    .faq-bg { background: var(--dark2); padding: 72px 20px; }
+    .faq-inner { max-width: 680px; margin: 0 auto; }
+    .faq-item {
+      border-bottom: 1px solid #222228;
+      padding: 22px 0;
+    }
+    .faq-q {
+      font-size: 16px; font-weight: 700;
+      color: var(--cream); margin-bottom: 10px;
+      display: flex; align-items: flex-start; gap: 12px;
+    }
+    .faq-q::before {
+      content: 'Q';
+      display: inline-block; flex-shrink: 0;
+      width: 28px; height: 28px;
+      background: var(--gold);
+      color: #000; font-weight: 900;
+      font-size: 14px;
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .faq-a {
+      font-size: 14px; line-height: 1.9; color: #7878a0;
+      padding-left: 40px;
+    }
+    .faq-a strong { color: var(--gold-light); }
+
+    /* ====== 最終CTA ====== */
+    .final-cta {
+      background: linear-gradient(135deg, #0d0d1e, #05050a);
+      padding: 80px 20px;
+      text-align: center;
+      border-top: 1px solid rgba(200,168,75,.15);
+    }
+    .cta-title {
+      font-size: clamp(28px, 7vw, 52px);
+      font-weight: 900;
+      line-height: 1.3;
+      margin-bottom: 16px;
+    }
+    .cta-title span {
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .cta-sub { font-size: 14px; color: #666688; margin-bottom: 32px; }
+    .cta-btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #c8a84b, #f0d070, #c8a84b);
+      background-size: 200% auto;
+      color: #000; font-size: 18px; font-weight: 900;
+      padding: 18px 52px; border-radius: 10px;
+      text-decoration: none;
+      letter-spacing: .1em;
+      animation: shimmer 3s linear infinite;
+      box-shadow: 0 6px 30px rgba(200,168,75,.3);
+    }
+    @keyframes shimmer { to { background-position: 200% center; } }
+    .cta-fine {
+      margin-top: 16px; font-size: 11px; color: #333345;
+    }
+
+    /* ====== フッター ====== */
+    footer {
+      background: #000; color: #333345;
+      padding: 24px 20px; text-align: center; font-size: 12px;
+      border-top: 1px solid #111118;
+      line-height: 2;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ====== ファーストビュー ====== -->
+<div class="hero-night">
+  <!-- 星 -->
+  <div class="stars" id="stars"></div>
+
+  <div class="moon">🌙</div>
+  <p class="hero-sub">MABORO PREMIUM SELECTION</p>
+  <h1 class="hero-title">まーぼうろ</h1>
+  <p class="hero-subtitle">たぶん<span>おいしい</span>。たぶん<span>ご利益ある</span>。</p>
+
+  <img src="まーぼうろ　深夜2時.png" alt="深夜2時のまーぼうろ" class="hero-img">
+
+  <p class="hero-copy">"人生、なんとかなる気がしてくる"</p>
+  <p class="hero-fine">※個人の感想です。なんとかなるかどうかは保証しません。</p>
+
+  <p class="scroll-hint">▼ SCROLL ▼</p>
+</div>
+
+<!-- ====== まーぼうとは ====== -->
+<div class="legend-bg">
+  <div class="legend-inner">
+    <p class="section-eyebrow">THE LEGEND</p>
+    <h2 class="section-title" style="font-size:clamp(22px,5vw,36px)">
+      まーぼうとは何者か。<br>
+      <span style="font-size:.6em; color:#666688; font-weight:400">（本人も正確には把握していない）</span>
+    </h2>
+
+    <div class="profile-card">
+      <img src="【まーぼうろ】基本.png" alt="まーぼう" class="profile-img">
+      <div class="profile-body">
+        <p class="profile-name">まーぼう</p>
+        <p class="profile-meta">FOUNDER / 製造責任者 / 全部やる人</p>
+        <p class="profile-bio">
+          本名にちなんだ愛称「まーぼう」。眼鏡がトレードマーク。<br><br>
+          特技は<strong>病気にならないこと</strong>。
+          生まれてこの方、風邪すらひいた記憶がない。
+          医師からは「何なんですか」と言われたこともある（未確認）。<br><br>
+          そのパワーをたまごボーロに閉じ込めることを思いついたのが、
+          ある<strong>深夜2時</strong>のことだった。
+        </p>
+      </div>
+    </div>
+
+    <div class="legend-stat">
+      <div class="stat-box">
+        <div class="stat-num">0</div>
+        <div class="stat-unit">生涯の病欠日数（自称）</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">∞</div>
+        <div class="stat-unit">まーぼうへの信頼度</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">2時</div>
+        <div class="stat-unit">最もインスピレーションが降りる時間</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== 深夜2時セクション ====== -->
+<div class="midnight-bg">
+  <div class="midnight-inner">
+    <div class="midnight-time">02:00</div>
+    <img src="まーぼうろ　深夜2時.png" alt="深夜2時のまーぼうろ" class="midnight-img">
+    <h2 class="midnight-copy">
+      深夜に食べると、<br>
+      <em>人生どうにかなる気がする。</em>
+    </h2>
+    <p class="midnight-sub">
+      眠れない夜。締め切りの夜。なんとなく不安な夜。<br>
+      そんな深夜2時、まーぼうろをひとつ口に放り込む。<br>
+      「…たぶんなんとかなるか。」<br>
+      その根拠のない自信こそが、まーぼうろの真の効能である。
+    </p>
+    <div class="midnight-disclaimer">
+      ※「深夜2時のまーぼうろ」を食べても実際に人生がどうにかなるかは不明です。<br>
+      ※でもまーぼうはそう信じています。<br>
+      ※深夜の食べすぎにはご注意ください。まーぼうは責任を負いません。
+    </div>
+  </div>
+</div>
+
+<!-- ====== 商品ラインナップ ====== -->
+<div class="lineup-bg">
+  <div class="lineup-inner">
+    <p class="section-eyebrow">PRODUCT LINEUP</p>
+    <h2 class="section-title">まーぼうろ全ラインナップ<br><span style="font-size:.55em;color:#555570;font-weight:400">（どれも「たぶんおいしい」）</span></h2>
+
+    <div class="lineup-grid">
+
+      <!-- メイン -->
+      <div class="product-card featured">
+        <img src="まーぼうろ　ひよこ版1.png" alt="まーぼうろ プレーン" class="product-img">
+        <div class="product-body">
+          <span class="product-tag">王道</span>
+          <h3 class="product-name">まーぼうろ プレーン</h3>
+          <p class="product-price">¥380 <span class="tax">（税込）</span></p>
+          <p class="product-desc">
+            とりあえずこれ食べとけ。<br>
+            シンプルな卵の甘さ。<strong>「たぶんおいしい」</strong>の原点。
+            まーぼうが自信を持って「たぶんおいしいと思う」と言えるやつ。
+          </p>
+          <a href="#" class="product-cta">カートに入れる</a>
+        </div>
+      </div>
+
+      <!-- 深夜2時 -->
+      <div class="product-card">
+        <img src="まーぼうろ　深夜2時.png" alt="深夜2時のまーぼうろ" class="product-img">
+        <div class="product-body">
+          <span class="product-tag night">深夜限定</span>
+          <h3 class="product-name">深夜2時のまーぼうろ</h3>
+          <p class="product-price">¥420 <span class="tax">（税込）</span></p>
+          <p class="product-desc">
+            深夜に食べると、<strong>人生どうにかなる気がしてくる</strong>やつ。
+            昼間食べても同じ味です。でも夜がおすすめ。
+          </p>
+          <a href="#" class="product-cta">カートに入れる</a>
+        </div>
+      </div>
+
+      <!-- あまいもじゃが -->
+      <div class="product-card">
+        <img src="まーぼうろ　あまいもじゃが.png" alt="あまいもじゃが" class="product-img">
+        <div class="product-body">
+          <span class="product-tag new">姉妹商品</span>
+          <h3 class="product-name">あまいもじゃが</h3>
+          <p class="product-price">¥350 <span class="tax">（税込）</span></p>
+          <p class="product-desc">
+            さつまいもフライ × お砂糖。<br>
+            <strong>「砂糖まみれ、まーぼう的おかし。」</strong><br>
+            なぜさつまいもか。まーぼうも深く考えていない。
+          </p>
+          <a href="#" class="product-cta">カートに入れる</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ====== 姉妹商品ビジョン ====== -->
+<div class="sibling-bg">
+  <div class="sibling-inner">
+    <p class="section-eyebrow">THE UNIVERSE</p>
+    <h2 class="section-title" style="margin-bottom:20px">
+      まーぼう帝国、<br>拡大中。
+    </h2>
+    <p style="text-align:center; color:#555570; font-size:14px; margin-bottom:28px;">
+      まーぼうの脳内では、すでに宇宙規模のブランドになっている。
+    </p>
+    <img src="まーぼうろ　姉妹商品.png" alt="姉妹商品ラインナップ" class="sibling-img">
+    <p style="text-align:center; font-size:12px; color:#333345; margin-top:12px;">
+      ※「まーぼうプリン」「こくうままーぼうろ」は現在構想中です。構想中というのは、まーぼうの夢の話です。
+    </p>
+  </div>
+</div>
+
+<!-- ====== 無病息災 ====== -->
+<div class="goriyaku-bg">
+  <div class="goriyaku-inner">
+    <div class="goriyaku-icon">🙏</div>
+    <h2 class="goriyaku-title">
+      無病息災。<br>
+      根拠はまーぼう本人。
+    </h2>
+    <p class="goriyaku-body">
+      まーぼうは<strong>生まれてから一度も病気になったことがない</strong>。<br>
+      これは医学的に証明された事実では<em style="color:#555570">ないかもしれない</em>が、<br>
+      まーぼうがそう言っているのだから、そういうことにしよう。<br><br>
+      そのまーぼうパワーを宿したまーぼうろを食べることで、<br>
+      <strong>なんとなく健康になった気持ちになれる</strong>。<br>
+      なった気持ちになれるだけで、十分ではないでしょうか。<br>
+      <span class="disclaimer">※実際の健康効果は保証しません。病気になっても責任は取れません。まーぼうも人間です（たぶん）。</span>
+    </p>
+    <div class="goriyaku-cert">
+      「わたしが病気にならないのは、ずっとボーロを食べているからかもしれない。<br>
+      たぶんそうだ。そういうことにしよう。」<br>
+      <span style="display:block; margin-top:8px; font-size:11px; color:#333345">— まーぼう（本人談）</span>
+    </div>
+  </div>
+</div>
+
+<!-- ====== FAQ ====== -->
+<div class="faq-bg">
+  <div class="faq-inner">
+    <p class="section-eyebrow">FAQ</p>
+    <h2 class="section-title" style="font-size:clamp(22px,5vw,34px)">よくある質問</h2>
+
+    <div class="faq-item">
+      <p class="faq-q">「たぶんおいしい」ってどういうこと？</p>
+      <p class="faq-a">まーぼうが自信を持って「おいしい」と断言するのは誇大広告になるかもしれないと考えた結果、<strong>「たぶんおいしい」</strong>という正直な表現に落ち着きました。食べてみてください。たぶん、おいしいです。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">深夜2時に食べないといけませんか？</p>
+      <p class="faq-a">いつ食べても同じ味です。ただし深夜2時に食べると<strong>「なんかいけるかも」という根拠のない自信</strong>が若干強まる気がする、とまーぼうは言っています。昼に食べても美味しいです。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">無病息災のご利益は本当にありますか？</p>
+      <p class="faq-a">まーぼうが<strong>病気になったことがない</strong>という事実（自称）に基づくご利益です。科学的根拠はありません。でも気持ちの問題は大事です。信じる者は救われる、かもしれません。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">「まーぼう」とは何者ですか？</p>
+      <p class="faq-a">本名にちなんだ愛称です。詳細は<strong>企業秘密</strong>です。ただ眼鏡をかけていることは確かです。そしてたぶん今日も元気です。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ====== 最終CTA ====== -->
+<div class="final-cta">
+  <h2 class="cta-title">
+    さあ、<span>たぶんおいしい</span>を<br>体験しよう。
+  </h2>
+  <p class="cta-sub">深夜でも昼でも。赤ちゃんでもおとなでも。</p>
+  <a href="#" class="cta-btn">🛒 今すぐ購入する</a>
+  <p class="cta-fine">
+    ※購入後に「たぶん」が「絶対」に変わっても、差額はお返しできません。
+  </p>
+</div>
+
+<footer>
+  <p>© まーぼう印製菓 | まーぼうろ帝国</p>
+  <p>「たぶんおいしい」は登録商標（未定）です。</p>
+  <p>まーぼうは今日も元気です。</p>
+</footer>
+
+<script>
+  // 星を動的生成
+  const starsEl = document.getElementById('stars');
+  for (let i = 0; i < 120; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    s.style.left = Math.random() * 100 + '%';
+    s.style.top = Math.random() * 100 + '%';
+    s.style.setProperty('--d', (2 + Math.random() * 4) + 's');
+    s.style.animationDelay = (Math.random() * 4) + 's';
+    s.style.width = s.style.height = (Math.random() < .15 ? 3 : 2) + 'px';
+    s.style.opacity = Math.random() * .6 + .1;
+    starsEl.appendChild(s);
+  }
+</script>
+
+</body>
+</html>
