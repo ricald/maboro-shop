@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>まーぼうろ | 赤ちゃんも喜ぶたまごボーロ</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --pink: #ffb7c5;
+      --pink-dark: #f0708a;
+      --pink-mid: #ff8ca8;
+      --yellow: #fff0b8;
+      --orange: #ffcf7a;
+      --text: #5a3a3a;
+      --text-soft: #9a7a7a;
+    }
+    body {
+      font-family: 'Hiragino Maru Gothic Pro', 'Rounded Mplus 1c', sans-serif;
+      background: #fff9fb;
+      color: var(--text);
+    }
+
+    /* ====== ヘッダー ====== */
+    header {
+      background: linear-gradient(160deg, #ffe0ec 0%, #fff4c2 100%);
+      padding: 36px 20px 28px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    header .deco { position: absolute; font-size: 32px; opacity: .35; }
+    header .deco:nth-child(1) { top: 8px;  left: 12px; }
+    header .deco:nth-child(2) { top: 8px;  right: 12px; }
+    header .deco:nth-child(3) { bottom: 8px; left: 30px; }
+    header .deco:nth-child(4) { bottom: 8px; right: 30px; }
+    header .sub-title { font-size: 13px; letter-spacing: .15em; color: var(--pink-dark); margin-bottom: 6px; }
+    header h1 {
+      font-size: clamp(48px, 12vw, 80px);
+      color: var(--pink-dark);
+      text-shadow: 3px 3px 0 #fff, 5px 5px 0 var(--pink);
+      letter-spacing: .12em; line-height: 1.1;
+    }
+    header .catch {
+      margin-top: 10px; font-size: 15px; color: #b05070;
+      background: rgba(255,255,255,.6);
+      display: inline-block; padding: 5px 20px; border-radius: 20px;
+    }
+
+    /* ====== ヒーロー ====== */
+    .hero {
+      text-align: center; padding: 30px 20px 0;
+    }
+    .hero img {
+      width: 100%; max-width: 460px;
+      border-radius: 24px;
+      box-shadow: 0 8px 32px rgba(240,100,120,.15);
+    }
+
+    /* ====== 安心バッジ ====== */
+    .badges {
+      display: flex; justify-content: center; gap: 10px;
+      flex-wrap: wrap; padding: 24px 20px;
+      max-width: 640px; margin: 0 auto;
+    }
+    .badge {
+      background: #fff; border: 2px solid var(--pink);
+      border-radius: 50px; padding: 8px 16px;
+      font-size: 13px; font-weight: bold; color: var(--pink-dark);
+      display: flex; align-items: center; gap: 6px;
+      box-shadow: 0 2px 8px rgba(240,100,120,.1);
+    }
+
+    /* ====== セクション共通 ====== */
+    .section { max-width: 640px; margin: 0 auto 36px; padding: 0 20px; }
+    .section-title {
+      font-size: 20px; color: var(--pink-dark);
+      text-align: center; margin-bottom: 18px;
+    }
+    .section-title::before, .section-title::after { content: '🌸'; margin: 0 8px; }
+
+    /* ====== ママへのメッセージ ====== */
+    .mama-msg {
+      background: linear-gradient(135deg, #fff0f5, #fff8e0);
+      border-radius: 20px; padding: 24px;
+      box-shadow: 0 4px 20px rgba(240,100,120,.1);
+      line-height: 2; font-size: 15px;
+      border-left: 4px solid var(--pink);
+    }
+    .mama-msg .greeting { font-size: 18px; font-weight: bold; color: var(--pink-dark); margin-bottom: 10px; }
+
+    /* ====== キャラクター + 商品画像 2カラム ====== */
+    .product-duo {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .product-duo img, .product-duo .duo-img {
+      width: 100%; border-radius: 18px;
+      box-shadow: 0 4px 18px rgba(240,100,120,.12);
+    }
+    @media (max-width: 500px) {
+      .product-duo { grid-template-columns: 1fr; }
+    }
+
+    /* ====== イラスト全幅 ====== */
+    .full-img {
+      width: 100%; border-radius: 18px;
+      box-shadow: 0 4px 18px rgba(240,100,120,.1);
+      display: block;
+    }
+
+    /* ====== 特徴カード ====== */
+    .features { display: grid; gap: 14px; }
+    .feature-card {
+      background: #fff; border-radius: 18px;
+      padding: 18px 20px;
+      box-shadow: 0 3px 16px rgba(240,100,120,.08);
+      display: flex; align-items: flex-start; gap: 14px;
+      border-top: 3px solid var(--pink);
+    }
+    .feature-card .emoji { font-size: 36px; flex-shrink: 0; }
+    .feature-card h3 { font-size: 16px; color: var(--pink-dark); margin-bottom: 5px; }
+    .feature-card p { font-size: 14px; line-height: 1.7; color: var(--text-soft); }
+
+    /* ====== 素材セクション ====== */
+    .ingredients-wrap {
+      background: #fffef5;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 4px 18px rgba(200,160,0,.1);
+    }
+    .ingredients-wrap img { width: 100%; display: block; }
+    .ingredients-note {
+      padding: 16px 20px;
+      font-size: 14px; line-height: 1.8;
+      color: #8a6030; text-align: center;
+      border-top: 1px dashed #ffd54f;
+    }
+
+    /* ====== 無病息災 ====== */
+    .mubyou {
+      background: linear-gradient(135deg, #fff4b0, #ffe8c0);
+      border-radius: 20px; padding: 28px 24px;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(255,180,0,.15);
+    }
+    .mubyou .icon { font-size: 52px; margin-bottom: 10px; }
+    .mubyou h3 { font-size: 22px; color: #c07000; margin-bottom: 12px; }
+    .mubyou p { font-size: 14px; line-height: 1.9; color: #8a5a00; }
+    .mubyou .highlight {
+      display: inline-block; background: #fff;
+      border-radius: 8px; padding: 2px 10px;
+      font-weight: bold; color: #c07000;
+    }
+
+    /* ====== 赤ちゃんシーン ====== */
+    .scene-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    @media (max-width: 460px) { .scene-grid { grid-template-columns: 1fr; } }
+    .scene-card {
+      background: #fff; border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 3px 14px rgba(240,100,120,.09);
+      border-bottom: 3px solid var(--orange);
+    }
+    .scene-card .scene-img-wrap {
+      background: #fff4f8; padding: 12px;
+      display: flex; justify-content: center; align-items: center;
+    }
+    .scene-card .scene-img-wrap img { width: 100%; max-width: 180px; border-radius: 12px; }
+    .scene-card .scene-text { padding: 14px 14px 16px; }
+    .scene-card h4 { font-size: 14px; color: var(--pink-dark); margin-bottom: 5px; }
+    .scene-card p { font-size: 13px; color: var(--text-soft); line-height: 1.6; }
+
+    /* ====== お客様の声 ====== */
+    .reviews { display: grid; gap: 14px; }
+    .review-card {
+      background: #fff; border-radius: 16px;
+      padding: 18px 20px;
+      box-shadow: 0 2px 14px rgba(240,100,120,.07);
+      border-left: 4px solid var(--pink);
+    }
+    .review-card .stars { font-size: 16px; margin-bottom: 6px; }
+    .review-card .review-text { font-size: 14px; line-height: 1.8; color: var(--text); margin-bottom: 8px; }
+    .review-card .reviewer { font-size: 12px; color: var(--text-soft); }
+
+    /* ====== CTA ====== */
+    .cta { text-align: center; padding: 32px 20px 52px; }
+    .cta-btn {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--pink-mid), #f0507a);
+      color: #fff; font-size: 19px; font-weight: bold;
+      padding: 18px 48px; border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 6px 20px rgba(240,80,120,.35);
+      letter-spacing: .08em;
+      transition: transform .15s, box-shadow .15s;
+    }
+    .cta-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(240,80,120,.4); }
+    .cta .sub { margin-top: 12px; font-size: 13px; color: var(--text-soft); }
+
+    /* ====== フッター ====== */
+    footer { background: #fce8ef; color: #b07080; text-align: center; padding: 18px; font-size: 13px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <span class="deco">🍼</span>
+  <span class="deco">🌸</span>
+  <span class="deco">🐣</span>
+  <span class="deco">💕</span>
+  <p class="sub-title">まーぼう印のたまごボーロ</p>
+  <h1>まーぼうろ</h1>
+  <p class="catch">赤ちゃんのはじめてのおやつに</p>
+</header>
+
+<main>
+
+  <!-- ヒーロー画像 -->
+  <div class="hero">
+    <img src="【まーぼうろ】基本.png" alt="まーぼうろ 商品イメージ">
+  </div>
+
+  <!-- 安心バッジ -->
+  <div class="badges">
+    <span class="badge">🥚 国産たまご使用</span>
+    <span class="badge">✋ 小さな手でつかみやすい</span>
+    <span class="badge">🌿 着色料不使用</span>
+    <span class="badge">🙏 無病息災のご利益つき</span>
+  </div>
+
+  <!-- ママへのメッセージ -->
+  <div class="section">
+    <h2 class="section-title">ママへ</h2>
+    <div class="mama-msg">
+      <p class="greeting">赤ちゃんのはじめてのおやつ、何をあげたら…<br>そんな迷いに寄り添います 🌸</p>
+      <p>
+        まーぼうろは、たまごの優しい甘さをシンプルに閉じ込めたたまごボーロ。<br>
+        ひとつひとつが小さいので<strong>赤ちゃんの口にちょうどよいサイズ</strong>。<br>
+        「おいしい！」と目を輝かせる笑顔が見られるかも 💕
+      </p>
+    </div>
+  </div>
+
+  <!-- まーぼうキャラ + 商品画像 -->
+  <div class="section">
+    <h2 class="section-title">まーぼうについて</h2>
+    <div class="product-duo">
+      <img src="img-maboro-baby.svg" alt="まーぼうキャラクター">
+      <img src="img-baby-eating.svg" alt="赤ちゃんが食べているイメージ">
+    </div>
+    <p style="text-align:center; font-size:13px; color:var(--text-soft); margin-top:12px;">
+      まーぼうは本名にちなんだ愛称。眼鏡がトレードマークの、みんなに愛されるキャラクターです 😄
+    </p>
+  </div>
+
+  <!-- 素材の良さ -->
+  <div class="section">
+    <h2 class="section-title">素材のやさしさ</h2>
+    <div class="ingredients-wrap">
+      <img src="img-ingredients.svg" alt="国産たまごとたまごボーロのイラスト">
+      <p class="ingredients-note">
+        国産たまごの自然な甘さだけで仕上げたシンプルレシピ。<br>
+        着色料・保存料は一切使用していません。<br>
+        <strong>赤ちゃんに食べさせるものだから、素材にとことんこだわりました。</strong>
+      </p>
+    </div>
+  </div>
+
+  <!-- 特徴 -->
+  <div class="section">
+    <h2 class="section-title">まーぼうろの魅力</h2>
+    <div class="features">
+      <div class="feature-card">
+        <span class="emoji">🥚</span>
+        <div>
+          <h3>やさしい卵のふわっと甘さ</h3>
+          <p>口の中でほろっととける食感。赤ちゃんが自分で食べる練習にも最適です。</p>
+        </div>
+      </div>
+      <div class="feature-card">
+        <span class="emoji">👶</span>
+        <div>
+          <h3>つかみ食べにぴったりのサイズ</h3>
+          <p>小さな手でもひとつずつつかみやすい丸いかたち。親子の食育タイムに。</p>
+        </div>
+      </div>
+      <div class="feature-card">
+        <span class="emoji">😄</span>
+        <div>
+          <h3>まーぼうが笑顔を届ける</h3>
+          <p>パッケージのまーぼうキャラが赤ちゃんをにっこり。ママも思わずほっこり。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 無病息災 -->
+  <div class="section">
+    <div class="mubyou">
+      <div class="icon">🙏</div>
+      <h3>無病息災のご利益つき</h3>
+      <p>
+        まーぼうは<span class="highlight">病気になったことがない</span>という伝説の持ち主。<br>
+        そのパワーが込められたまーぼうろを食べて、<br>
+        赤ちゃんもすくすく健やかに育ちますように🌟
+      </p>
+    </div>
+  </div>
+
+  <!-- こんなシーンに -->
+  <div class="section">
+    <h2 class="section-title">こんなシーンに</h2>
+    <div class="scene-grid">
+      <div class="scene-card">
+        <div class="scene-img-wrap">
+          <img src="img-baby-eating.svg" alt="おやつタイムのイラスト">
+        </div>
+        <div class="scene-text">
+          <h4>🌞 毎日のおやつ</h4>
+          <p>ちょうどよいサイズで、毎日のおやつ時間にぴったり。</p>
+        </div>
+      </div>
+      <div class="scene-card">
+        <div class="scene-img-wrap">
+          <img src="img-gift.svg" alt="ギフトのイラスト">
+        </div>
+        <div class="scene-text">
+          <h4>🎁 出産・お祝いギフト</h4>
+          <p>無病息災のご利益つきで縁起よし！喜ばれるギフトに。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- お客様の声 -->
+  <div class="section">
+    <h2 class="section-title">ママたちの声</h2>
+    <div class="reviews">
+      <div class="review-card">
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <p class="review-text">
+          離乳食が終わってはじめてのおやつに買いました。小さな手で一生懸命つかもうとする姿がかわいくて…。
+          まーぼうのイラストも可愛くてお気に入りです！
+        </p>
+        <p class="reviewer">— 9ヶ月の男の子のママ</p>
+      </div>
+      <div class="review-card">
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <p class="review-text">
+          出産祝いのギフトに選びました。「無病息災のご利益つき」というのが縁起よくて喜んでもらえました。
+          パッケージのまーぼうも愛嬌があってほっこり 💕
+        </p>
+        <p class="reviewer">— 友人への出産祝いに購入</p>
+      </div>
+      <div class="review-card">
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <p class="review-text">
+          着色料不使用で素材シンプルなところが安心。
+          口の中でやさしくとけるので、赤ちゃんに食べさせても怖くなかったです。リピートしています！
+        </p>
+        <p class="reviewer">— 1歳の女の子のママ</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta">
+    <a href="#" class="cta-btn">🛒 ご購入はこちら</a>
+    <p class="sub">赤ちゃんの笑顔とご健康を、まーぼうと一緒に 💕</p>
+  </div>
+
+</main>
+
+<footer>
+  <p>© まーぼう印製菓 | まーぼうろ</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 340" width="400" height="340">
+  <defs>
+    <radialGradient id="bgGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fff0f8"/>
+      <stop offset="100%" stop-color="#ffe4f0"/>
+    </radialGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="2" dy="4" stdDeviation="6" flood-color="#f0a0b8" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="400" height="340" rx="24" fill="url(#bgGrad)"/>
+
+  <!-- ふわふわ装飾 -->
+  <circle cx="40" cy="40" r="18" fill="#ffcce0" opacity=".5"/>
+  <circle cx="360" cy="40" r="14" fill="#ffe0a0" opacity=".5"/>
+  <circle cx="30" cy="300" r="12" fill="#ffd4e8" opacity=".4"/>
+  <circle cx="370" cy="290" r="16" fill="#ffe8a0" opacity=".4"/>
+  <text x="38" y="46" font-size="22" text-anchor="middle" opacity=".7">🌸</text>
+  <text x="360" y="46" font-size="20" text-anchor="middle" opacity=".7">⭐</text>
+  <text x="28" y="305" font-size="18" text-anchor="middle" opacity=".6">💕</text>
+  <text x="372" y="295" font-size="20" text-anchor="middle" opacity=".6">✨</text>
+
+  <!-- まーぼうの体（大きめ・ゆるかわ） -->
+  <g filter="url(#shadow)">
+    <!-- 体 -->
+    <ellipse cx="200" cy="240" rx="70" ry="75" fill="#ffe0b2"/>
+    <!-- シャツ -->
+    <ellipse cx="200" cy="265" rx="68" ry="58" fill="#ff9ab5"/>
+    <!-- 襟 -->
+    <path d="M165 215 Q200 235 235 215 Q220 250 200 255 Q180 250 165 215Z" fill="#fff"/>
+    <!-- 腕（左） -->
+    <ellipse cx="126" cy="248" rx="22" ry="36" fill="#ffe0b2" transform="rotate(-20 126 248)"/>
+    <!-- 腕（右）上げてる -->
+    <ellipse cx="274" cy="218" rx="22" ry="36" fill="#ffe0b2" transform="rotate(35 274 218)"/>
+    <!-- 手（右）でボーロを持つ -->
+    <circle cx="290" cy="195" r="18" fill="#ffe0b2"/>
+    <!-- ボーロを持った手のボーロ -->
+    <circle cx="304" cy="182" r="12" fill="#fff8e1" stroke="#ffd54f" stroke-width="2"/>
+    <circle cx="304" cy="182" r="7" fill="#fffde7"/>
+    <!-- 頭 -->
+    <circle cx="200" cy="140" r="72" fill="#ffe0b2"/>
+    <!-- 髪 -->
+    <ellipse cx="200" cy="80" rx="62" ry="28" fill="#333"/>
+    <rect x="138" y="80" width="124" height="30" fill="#333"/>
+    <ellipse cx="145" cy="110" rx="16" ry="28" fill="#333"/>
+    <ellipse cx="160" cy="78" rx="14" ry="20" fill="#333"/>
+    <ellipse cx="200" cy="72" rx="18" ry="22" fill="#333"/>
+    <ellipse cx="240" cy="78" rx="14" ry="20" fill="#333"/>
+    <ellipse cx="255" cy="110" rx="16" ry="28" fill="#333"/>
+    <!-- 眼鏡フレーム -->
+    <circle cx="180" cy="145" r="20" fill="none" stroke="#e05060" stroke-width="3.5"/>
+    <circle cx="220" cy="145" r="20" fill="none" stroke="#e05060" stroke-width="3.5"/>
+    <line x1="200" y1="145" x2="208" y2="143" stroke="#e05060" stroke-width="3"/>
+    <line x1="160" y1="143" x2="148" y2="138" stroke="#e05060" stroke-width="3"/>
+    <line x1="240" y1="143" x2="252" y2="138" stroke="#e05060" stroke-width="3"/>
+    <!-- 目（笑顔） -->
+    <path d="M170 142 Q180 150 190 142" stroke="#333" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M210 142 Q220 150 230 142" stroke="#333" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <!-- 鼻 -->
+    <ellipse cx="200" cy="158" rx="5" ry="4" fill="#e0a090"/>
+    <!-- 口（満面の笑み） -->
+    <path d="M183 170 Q200 185 217 170" stroke="#c06060" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <!-- ほっぺ -->
+    <ellipse cx="162" cy="162" rx="14" ry="10" fill="#ffb3c6" opacity=".7"/>
+    <ellipse cx="238" cy="162" rx="14" ry="10" fill="#ffb3c6" opacity=".7"/>
+  </g>
+
+  <!-- ボーロが散りばめられている -->
+  <circle cx="80" cy="180" r="10" fill="#fff8e1" stroke="#ffd54f" stroke-width="1.5" opacity=".9"/>
+  <circle cx="80" cy="180" r="6" fill="#fffde7" opacity=".9"/>
+  <circle cx="65" cy="220" r="8" fill="#fff8e1" stroke="#ffd54f" stroke-width="1.5" opacity=".8"/>
+  <circle cx="320" cy="200" r="10" fill="#fff8e1" stroke="#ffd54f" stroke-width="1.5" opacity=".9"/>
+  <circle cx="335" cy="240" r="8" fill="#fff8e1" stroke="#ffd54f" stroke-width="1.5" opacity=".8"/>
+  <circle cx="100" cy="285" r="9" fill="#fff8e1" stroke="#ffd54f" stroke-width="1.5" opacity=".7"/>
+  <circle cx="305" cy="285" r="9" fill="#fff8e1" stroke="#ffd54f" stroke-width="1.5" opacity=".7"/>
+
+  <!-- テキスト -->
+  <text x="200" y="326" font-size="16" text-anchor="middle" fill="#c0607a" font-family="sans-serif" font-weight="bold" letter-spacing="2">まーぼうにお任せ♪</text>
+</svg>

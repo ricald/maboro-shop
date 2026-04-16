@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 320" width="400" height="320">
+  <defs>
+    <linearGradient id="boxGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff9ab5"/>
+      <stop offset="100%" stop-color="#f06090"/>
+    </linearGradient>
+    <linearGradient id="lidGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff6b9d"/>
+      <stop offset="100%" stop-color="#e0406a"/>
+    </linearGradient>
+    <radialGradient id="bgGift" cx="50%" cy="50%" r="55%">
+      <stop offset="0%" stop-color="#fff4f8"/>
+      <stop offset="100%" stop-color="#ffe8f0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="400" height="320" rx="24" fill="url(#bgGift)"/>
+
+  <!-- 輝き -->
+  <text x="50" y="55" font-size="28" opacity=".5">✨</text>
+  <text x="330" y="60" font-size="24" opacity=".5">🌸</text>
+  <text x="40" y="270" font-size="22" opacity=".45">💕</text>
+  <text x="340" y="275" font-size="22" opacity=".45">⭐</text>
+  <text x="340" y="120" font-size="18" opacity=".4">🌟</text>
+  <text x="55" y="160" font-size="16" opacity=".4">✨</text>
+
+  <!-- 影 -->
+  <ellipse cx="200" cy="295" rx="120" ry="12" fill="#f0a0b8" opacity=".3"/>
+
+  <!-- ギフトボックス本体 -->
+  <rect x="95" y="175" width="210" height="110" rx="10" fill="url(#boxGrad)"/>
+  <!-- ボックス前面のリボン横線 -->
+  <rect x="95" y="215" width="210" height="22" fill="#fff" opacity=".25"/>
+
+  <!-- ギフトボックス蓋 -->
+  <rect x="88" y="148" width="224" height="38" rx="8" fill="url(#lidGrad)"/>
+
+  <!-- リボン縦 -->
+  <rect x="191" y="100" width="18" height="185" rx="9" fill="#fff" opacity=".7"/>
+  <!-- リボン横（蓋の上） -->
+  <rect x="88" y="157" width="224" height="14" rx="7" fill="#fff" opacity=".7"/>
+
+  <!-- リボンの結び目 -->
+  <!-- 左の輪っか -->
+  <ellipse cx="174" cy="115" rx="32" ry="20" fill="#fff" opacity=".85" transform="rotate(-30 174 115)"/>
+  <!-- 右の輪っか -->
+  <ellipse cx="226" cy="115" rx="32" ry="20" fill="#fff" opacity=".85" transform="rotate(30 226 115)"/>
+  <!-- センターノット -->
+  <circle cx="200" cy="118" r="18" fill="#ff6b9d"/>
+  <circle cx="200" cy="118" r="12" fill="#fff" opacity=".6"/>
+
+  <!-- まーぼうシール -->
+  <circle cx="200" cy="218" r="28" fill="#fff" opacity=".9"/>
+  <circle cx="200" cy="218" r="24" fill="#ffe0ec"/>
+  <!-- まーぼう顔（小） -->
+  <circle cx="200" cy="213" r="14" fill="#ffe0b2"/>
+  <ellipse cx="200" cy="202" rx="10" ry="5" fill="#333"/>
+  <!-- 眼鏡 -->
+  <circle cx="195" cy="213" r="5" fill="none" stroke="#e05060" stroke-width="1.5"/>
+  <circle cx="205" cy="213" r="5" fill="none" stroke="#e05060" stroke-width="1.5"/>
+  <line x1="200" y1="213" x2="202" y2="212" stroke="#e05060" stroke-width="1.5"/>
+  <!-- 口 -->
+  <path d="M195 219 Q200 224 205 219" stroke="#c06060" stroke-width="1.5" fill="none"/>
+  <!-- ほっぺ -->
+  <ellipse cx="189" cy="216" rx="4" ry="3" fill="#ffb3c6" opacity=".8"/>
+  <ellipse cx="211" cy="216" rx="4" ry="3" fill="#ffb3c6" opacity=".8"/>
+
+  <!-- 小さなボーロをまわりに散らす -->
+  <circle cx="115" cy="240" r="9" fill="#fff8e1" stroke="#ffd54f" stroke-width="1.5"/>
+  <circle cx="115" cy="240" r="5" fill="#fffde7"/>
+  <circle cx="285" cy="240" r="9" fill="#fff8e1" stroke="#ffd54f" stroke-width="1.5"/>
+  <circle cx="285" cy="240" r="5" fill="#fffde7"/>
+  <circle cx="130" cy="270" r="7" fill="#fff8e1" stroke="#ffd54f" stroke-width="1.5"/>
+  <circle cx="270" cy="270" r="7" fill="#fff8e1" stroke="#ffd54f" stroke-width="1.5"/>
+  <circle cx="155" cy="283" r="8" fill="#fff8e1" stroke="#ffd54f" stroke-width="1.5"/>
+  <circle cx="245" cy="283" r="8" fill="#fff8e1" stroke="#ffd54f" stroke-width="1.5"/>
+
+  <!-- タグ -->
+  <rect x="248" y="98" width="90" height="44" rx="8" fill="#fff" opacity=".9"/>
+  <rect x="252" y="102" width="82" height="36" rx="6" fill="#fff4f8"/>
+  <text x="293" y="120" font-size="10" text-anchor="middle" fill="#c0607a" font-family="sans-serif" font-weight="bold">無病息災</text>
+  <text x="293" y="134" font-size="9" text-anchor="middle" fill="#e07090" font-family="sans-serif">ご利益つき🙏</text>
+  <line x1="248" y1="118" x2="240" y2="118" stroke="#c0607a" stroke-width="1.5"/>
+  <circle cx="238" cy="118" r="3" fill="none" stroke="#c0607a" stroke-width="1.5"/>
+
+  <!-- テキスト -->
+  <text x="200" y="308" font-size="15" text-anchor="middle" fill="#c0607a" font-family="sans-serif" font-weight="bold">大切な赤ちゃんへの贈りもの 💕</text>
+</svg>

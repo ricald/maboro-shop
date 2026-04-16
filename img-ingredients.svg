@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300">
+  <defs>
+    <radialGradient id="bgIng" cx="50%" cy="50%" r="55%">
+      <stop offset="0%" stop-color="#fffef0"/>
+      <stop offset="100%" stop-color="#fff8e0"/>
+    </radialGradient>
+    <radialGradient id="eggGrad" cx="40%" cy="35%" r="55%">
+      <stop offset="0%" stop-color="#fff9e6"/>
+      <stop offset="100%" stop-color="#f5e6c0"/>
+    </radialGradient>
+    <radialGradient id="yolkGrad" cx="40%" cy="35%" r="55%">
+      <stop offset="0%" stop-color="#ffe066"/>
+      <stop offset="100%" stop-color="#ffb300"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="400" height="300" rx="24" fill="url(#bgIng)"/>
+
+  <!-- 装飾 -->
+  <text x="30" y="42" font-size="20" opacity=".4">✨</text>
+  <text x="355" y="42" font-size="20" opacity=".4">⭐</text>
+
+  <!-- ==== 卵 ==== -->
+  <!-- 割れた卵の殻（左） -->
+  <g transform="translate(60, 120)">
+    <!-- 影 -->
+    <ellipse cx="55" cy="108" rx="45" ry="8" fill="#e0c080" opacity=".35"/>
+    <!-- 殻の下部 -->
+    <path d="M10 65 Q15 110 55 110 Q95 110 100 65" fill="#f5e6c0" stroke="#e0c890" stroke-width="1.5"/>
+    <!-- 卵の内側 -->
+    <path d="M15 65 Q20 100 55 100 Q90 100 95 65" fill="#fffde7"/>
+    <!-- 殻の割れた上部（左） -->
+    <path d="M10 65 Q12 50 20 40 Q30 28 55 25 Q35 55 10 65Z" fill="#f5e6c0" stroke="#e0c890" stroke-width="1.5"/>
+    <!-- 殻の割れた上部（右） -->
+    <path d="M100 65 Q98 50 90 40 Q80 28 55 25 Q75 55 100 65Z" fill="#f5e6c0" stroke="#e0c890" stroke-width="1.5"/>
+    <!-- 黄身 -->
+    <circle cx="55" cy="80" r="28" fill="url(#yolkGrad)"/>
+    <circle cx="55" cy="80" r="24" fill="#ffe566"/>
+    <ellipse cx="46" cy="72" rx="7" ry="5" fill="#fff" opacity=".45" transform="rotate(-20 46 72)"/>
+    <!-- 白身 -->
+    <ellipse cx="55" cy="92" rx="32" ry="10" fill="#fffde7" opacity=".7"/>
+  </g>
+
+  <!-- ==== ボーロの山 ==== -->
+  <g transform="translate(195, 60)">
+    <!-- お皿 -->
+    <ellipse cx="90" cy="195" rx="78" ry="14" fill="#f0d080" opacity=".5"/>
+    <ellipse cx="90" cy="192" rx="78" ry="12" fill="#fff8e1" stroke="#ffd54f" stroke-width="1.5"/>
+
+    <!-- ボーロを積み重ねる（山形） -->
+    <!-- 最下段 -->
+    <circle cx="30" cy="178" r="18" fill="#fff8e1" stroke="#ffd54f" stroke-width="2"/>
+    <circle cx="30" cy="178" r="11" fill="#fffde7"/>
+    <circle cx="30" cy="174" r="5" fill="#fff" opacity=".6"/>
+
+    <circle cx="68" cy="180" r="18" fill="#fff8e1" stroke="#ffd54f" stroke-width="2"/>
+    <circle cx="68" cy="180" r="11" fill="#fffde7"/>
+
+    <circle cx="106" cy="178" r="18" fill="#fff8e1" stroke="#ffd54f" stroke-width="2"/>
+    <circle cx="106" cy="178" r="11" fill="#fffde7"/>
+
+    <circle cx="144" cy="180" r="18" fill="#fff8e1" stroke="#ffd54f" stroke-width="2"/>
+    <circle cx="144" cy="180" r="11" fill="#fffde7"/>
+
+    <!-- 2段目 -->
+    <circle cx="49" cy="154" r="18" fill="#fff8e1" stroke="#ffd54f" stroke-width="2"/>
+    <circle cx="49" cy="154" r="11" fill="#fffde7"/>
+    <circle cx="49" cy="150" r="5" fill="#fff" opacity=".6"/>
+
+    <circle cx="87" cy="152" r="18" fill="#fff8e1" stroke="#ffd54f" stroke-width="2"/>
+    <circle cx="87" cy="152" r="11" fill="#fffde7"/>
+
+    <circle cx="125" cy="154" r="18" fill="#fff8e1" stroke="#ffd54f" stroke-width="2"/>
+    <circle cx="125" cy="154" r="11" fill="#fffde7"/>
+
+    <!-- 3段目 -->
+    <circle cx="68" cy="128" r="18" fill="#fff8e1" stroke="#ffd54f" stroke-width="2"/>
+    <circle cx="68" cy="128" r="11" fill="#fffde7"/>
+
+    <circle cx="106" cy="126" r="18" fill="#fff8e1" stroke="#ffd54f" stroke-width="2"/>
+    <circle cx="106" cy="126" r="11" fill="#fffde7"/>
+    <circle cx="106" cy="122" r="5" fill="#fff" opacity=".6"/>
+
+    <!-- 頂上 -->
+    <circle cx="87" cy="100" r="18" fill="#fff8e1" stroke="#ffd54f" stroke-width="2"/>
+    <circle cx="87" cy="100" r="11" fill="#fffde7"/>
+    <circle cx="83" cy="95" r="5" fill="#fff" opacity=".6"/>
+
+    <!-- きらきら -->
+    <text x="150" y="100" font-size="18" opacity=".7">✨</text>
+    <text x="10" y="135" font-size="14" opacity=".6">⭐</text>
+  </g>
+
+  <!-- ==== ラベル ==== -->
+  <!-- 卵ラベル -->
+  <rect x="50" y="240" width="120" height="36" rx="10" fill="#fff9e6" stroke="#ffd54f" stroke-width="1.5"/>
+  <text x="110" y="256" font-size="11" text-anchor="middle" fill="#b08000" font-family="sans-serif" font-weight="bold">🥚 国産たまご</text>
+  <text x="110" y="270" font-size="10" text-anchor="middle" fill="#a07000" font-family="sans-serif">やさしい甘さのひみつ</text>
+
+  <!-- ボーロラベル -->
+  <rect x="235" y="240" width="120" height="36" rx="10" fill="#fffde7" stroke="#ffd54f" stroke-width="1.5"/>
+  <text x="295" y="256" font-size="11" text-anchor="middle" fill="#b08000" font-family="sans-serif" font-weight="bold">😊 ふわっと食感</text>
+  <text x="295" y="270" font-size="10" text-anchor="middle" fill="#a07000" font-family="sans-serif">口でとけるやわらかさ</text>
+
+  <!-- タイトル -->
+  <text x="200" y="32" font-size="16" text-anchor="middle" fill="#c08000" font-family="sans-serif" font-weight="bold" letter-spacing="2">素材のやさしさ、そのままに</text>
+</svg>
