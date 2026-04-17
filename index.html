@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>まーぼうろ | まーぼう印のたまごぼーろ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700;900&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:    #FDF4E3;
+      --cream-dk: #F5E8CC;
+      --gold:     #C8962A;
+      --gold-lt:  #E8B84B;
+      --brown:    #7B4F2E;
+      --brown-dk: #2D1A0E;
+      --red:      #B83030;
+      --white:    #FFFEF8;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: var(--cream);
+      color: var(--brown-dk);
+      line-height: 1.7;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(253,244,227,0.96);
+      backdrop-filter: blur(6px);
+      border-bottom: 2px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 40px;
+    }
+    .nav-logo {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: var(--brown-dk);
+      letter-spacing: .05em;
+    }
+    .nav-logo span { color: var(--gold); }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 32px;
+    }
+    nav ul a {
+      text-decoration: none;
+      font-size: .88rem;
+      font-weight: 700;
+      color: var(--brown);
+      letter-spacing: .08em;
+      transition: color .2s;
+    }
+    nav ul a:hover { color: var(--gold); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      overflow: hidden;
+      background: linear-gradient(135deg, #FDF4E3 0%, #F5E8CC 60%, #EDD9A3 100%);
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 70% 50%, rgba(200,150,42,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-text {
+      position: relative;
+      z-index: 2;
+      padding: 80px 60px 80px 80px;
+    }
+    .hero-eyebrow {
+      display: inline-block;
+      background: var(--red);
+      color: #fff;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .2em;
+      padding: 5px 16px;
+      border-radius: 2px;
+      margin-bottom: 24px;
+    }
+    .hero-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(2.6rem, 4.5vw, 4.2rem);
+      font-weight: 900;
+      line-height: 1.25;
+      letter-spacing: .04em;
+      color: var(--brown-dk);
+      margin-bottom: 16px;
+    }
+    .hero-title em {
+      font-style: normal;
+      color: var(--gold);
+    }
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--brown);
+      margin-bottom: 12px;
+      font-weight: 500;
+    }
+    .hero-origin {
+      font-size: .88rem;
+      color: var(--brown);
+      opacity: .8;
+      margin-bottom: 40px;
+      padding: 12px 16px;
+      border-left: 3px solid var(--gold);
+      background: rgba(200,150,42,.07);
+    }
+    .btn {
+      display: inline-block;
+      background: var(--gold);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: .1em;
+      padding: 16px 40px;
+      border-radius: 4px;
+      transition: background .2s, transform .15s;
+    }
+    .btn:hover { background: var(--gold-lt); transform: translateY(-2px); }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--gold);
+      color: var(--gold);
+      margin-left: 16px;
+    }
+    .btn-outline:hover { background: var(--gold); color: #fff; }
+
+    .hero-img {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 60px 60px 20px;
+    }
+    .hero-img img {
+      width: 100%;
+      max-width: 520px;
+      border-radius: 16px;
+      box-shadow: 0 24px 64px rgba(45,26,14,.22);
+    }
+    .hero-badge {
+      position: absolute;
+      top: 80px;
+      right: 80px;
+      width: 110px;
+      height: 110px;
+      background: var(--red);
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-family: 'Noto Serif JP', serif;
+      font-size: .72rem;
+      font-weight: 700;
+      line-height: 1.4;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(184,48,48,.4);
+      animation: pulse 2.5s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.04); }
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      text-align: center;
+      padding: 16px 0;
+      color: var(--gold);
+      font-size: 1.4rem;
+      letter-spacing: .5em;
+    }
+
+    /* ── SECTION COMMONS ── */
+    section { padding: 96px 0; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
+    .section-label {
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .25em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .section-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 900;
+      line-height: 1.3;
+      margin-bottom: 20px;
+      color: var(--brown-dk);
+    }
+    .section-title span { color: var(--gold); }
+    .section-lead {
+      font-size: 1rem;
+      color: var(--brown);
+      max-width: 600px;
+      line-height: 1.85;
+    }
+
+    /* ── 無病息災 ── */
+    .mubyou {
+      background: linear-gradient(160deg, #1A0A03 0%, #3D1E08 50%, #1A0A03 100%);
+      color: var(--cream);
+      position: relative;
+      overflow: hidden;
+    }
+    .mubyou::before {
+      content: '無病息災';
+      position: absolute;
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(8rem, 20vw, 18rem);
+      font-weight: 900;
+      color: rgba(255,255,255,.03);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      white-space: nowrap;
+      pointer-events: none;
+      letter-spacing: .1em;
+    }
+    .mubyou .container {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .mubyou .section-label { color: var(--gold-lt); }
+    .mubyou .section-title { color: var(--cream); }
+    .mubyou .section-lead { color: rgba(253,244,227,.8); max-width: 100%; }
+    .mubyou-stat {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .stat-card {
+      background: rgba(200,150,42,.12);
+      border: 1px solid rgba(200,150,42,.3);
+      border-radius: 12px;
+      padding: 24px 28px;
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+    }
+    .stat-icon {
+      font-size: 2.2rem;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+    .stat-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--gold-lt);
+      margin-bottom: 6px;
+    }
+    .stat-desc {
+      font-size: .88rem;
+      color: rgba(253,244,227,.75);
+      line-height: 1.7;
+    }
+    .mubyou-seal {
+      display: inline-block;
+      border: 3px solid var(--gold);
+      border-radius: 50%;
+      width: 160px;
+      height: 160px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 32px 0;
+      font-family: 'Noto Serif JP', serif;
+      font-size: .95rem;
+      font-weight: 700;
+      color: var(--gold);
+      text-align: center;
+      line-height: 1.6;
+      position: relative;
+    }
+    .mubyou-seal::before {
+      content: '';
+      position: absolute;
+      inset: 6px;
+      border-radius: 50%;
+      border: 1px solid rgba(200,150,42,.4);
+    }
+
+    /* ── STORY ── */
+    .story { background: var(--white); }
+    .story .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .story-img img {
+      width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 16px 48px rgba(45,26,14,.14);
+    }
+
+    /* ── PRODUCTS ── */
+    .products { background: var(--cream); }
+    .products-header { text-align: center; margin-bottom: 60px; }
+    .products-header .section-lead { margin: 0 auto; text-align: center; }
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .product-card {
+      background: var(--white);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(45,26,14,.08);
+      transition: transform .25s, box-shadow .25s;
+    }
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(45,26,14,.16);
+    }
+    .product-card img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      display: block;
+    }
+    .product-info {
+      padding: 24px 24px 28px;
+    }
+    .product-tag {
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .product-name {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--brown-dk);
+      margin-bottom: 10px;
+    }
+    .product-desc {
+      font-size: .85rem;
+      color: var(--brown);
+      line-height: 1.75;
+      margin-bottom: 16px;
+    }
+    .product-price {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--brown-dk);
+    }
+    .product-price small {
+      font-size: .75rem;
+      font-weight: 400;
+      color: var(--brown);
+      margin-left: 4px;
+    }
+    .product-btn {
+      display: block;
+      margin-top: 16px;
+      text-align: center;
+      background: var(--brown-dk);
+      color: var(--cream);
+      text-decoration: none;
+      font-size: .88rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      padding: 12px;
+      border-radius: 6px;
+      transition: background .2s;
+    }
+    .product-btn:hover { background: var(--gold); }
+
+    /* ── LINEUP WIDE ── */
+    .lineup { background: var(--cream-dk); }
+    .lineup .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .lineup-text .section-lead { max-width: 100%; margin-bottom: 32px; }
+    .lineup img {
+      width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 16px 48px rgba(45,26,14,.14);
+    }
+
+    /* ── SISTERS ── */
+    .sisters { background: var(--white); }
+    .sisters .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .sisters img {
+      width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 16px 48px rgba(45,26,14,.14);
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: linear-gradient(135deg, var(--gold) 0%, #A07020 100%);
+      text-align: center;
+      padding: 96px 40px;
+    }
+    .cta-section h2 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 900;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+    .cta-section p {
+      color: rgba(255,255,255,.88);
+      font-size: 1rem;
+      margin-bottom: 40px;
+    }
+    .btn-white {
+      background: #fff;
+      color: var(--gold);
+      font-weight: 900;
+      font-size: 1.05rem;
+      padding: 18px 52px;
+      border-radius: 4px;
+      text-decoration: none;
+      display: inline-block;
+      letter-spacing: .08em;
+      transition: transform .15s, box-shadow .15s;
+    }
+    .btn-white:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0,0,0,.2);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--brown-dk);
+      color: rgba(253,244,227,.6);
+      text-align: center;
+      padding: 48px 40px;
+      font-size: .82rem;
+      line-height: 2;
+    }
+    footer .footer-logo {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    footer nav {
+      background: transparent;
+      border: none;
+      position: static;
+      backdrop-filter: none;
+      justify-content: center;
+      padding: 0;
+      margin-bottom: 24px;
+    }
+    footer nav ul a {
+      color: rgba(253,244,227,.6);
+      font-size: .82rem;
+    }
+    footer nav ul a:hover { color: var(--gold-lt); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 12px 24px; }
+      nav ul { gap: 20px; }
+      .hero { grid-template-columns: 1fr; min-height: auto; padding: 80px 0 40px; }
+      .hero-text { padding: 40px 24px 24px; }
+      .hero-img { padding: 24px; }
+      .hero-badge { top: 20px; right: 24px; width: 90px; height: 90px; font-size: .65rem; }
+      .mubyou .container,
+      .story .container,
+      .lineup .container,
+      .sisters .container { grid-template-columns: 1fr; gap: 40px; }
+      .mubyou .container { padding: 0 24px; }
+      .products-grid { grid-template-columns: 1fr 1fr; }
+      section { padding: 64px 0; }
+      .container { padding: 0 24px; }
+    }
+    @media (max-width: 580px) {
+      .products-grid { grid-template-columns: 1fr; }
+      nav ul { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">まーぼう<span>印の</span>たまごぼーろ</div>
+  <ul>
+    <li><a href="#story">ブランドストーリー</a></li>
+    <li><a href="#mubyou">無病息災</a></li>
+    <li><a href="#products">商品一覧</a></li>
+    <li><a href="#sisters">姉妹商品</a></li>
+    <li><a href="#buy" class="btn" style="padding:8px 20px;color:#fff;">ご購入はこちら</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <span class="hero-eyebrow">まーぼう印のたまごぼーろ</span>
+    <h1 class="hero-title">まーぼうは、<br>病気をしない。<br><em>だから、うまい。</em></h1>
+    <p class="hero-sub">無病息災のご利益がある、ちょっと特別なたまごぼーろ。</p>
+    <p class="hero-origin">
+      「まーぼうのたまごぼーろ」から生まれた名前、<strong>まーぼうろ</strong>。<br>
+      まーぼうが病気をしないという伝説が、このひとくちに宿っています。
+    </p>
+    <a href="#products" class="btn">商品を見る</a>
+    <a href="#mubyou" class="btn btn-outline">無病息災とは</a>
+  </div>
+  <div class="hero-img">
+    <img src="%E3%80%90%E3%81%BE%E3%83%BC%E3%81%BC%E3%81%86%E3%82%8D%E3%80%91%E5%9F%BA%E6%9C%AC.png" alt="まーぼうろ" />
+    <div class="hero-badge">無病<br>息災<br>ご利益あり</div>
+  </div>
+</section>
+
+<div class="divider">✦ ✦ ✦</div>
+
+<!-- MUBYOU 無病息災 -->
+<section class="mubyou" id="mubyou">
+  <div class="container">
+    <div>
+      <p class="section-label">Legend of Maabou</p>
+      <h2 class="section-title">まーぼうは、<br>一度も病気に<br>なったことがない。</h2>
+      <p class="section-lead">
+        まーぼうは、生まれてこのかた風邪ひとつひいたことがない。<br>
+        そのまーぼうが丹精込めてつくったたまごぼーろ、<strong style="color:var(--gold-lt)">まーぼうろ</strong>には、<br>
+        <strong style="color:var(--gold-lt)">無病息災のご利益</strong>が宿っていると言われています。<br><br>
+        仕事に、家族に、日々奮闘する40代の男たちへ。<br>
+        こころと体の守り神として、ひとくちどうぞ。
+      </p>
+      <div class="mubyou-seal">
+        無病<br>息災<br><span style="font-size:.7rem;margin-top:4px">まーぼう印</span>
+      </div>
+    </div>
+    <div class="mubyou-stat">
+      <div class="stat-card">
+        <div class="stat-icon">🏯</div>
+        <div>
+          <div class="stat-title">まーぼうの伝説</div>
+          <div class="stat-desc">まーぼうはその生涯で一度も病院に行ったことがない。それどころか、まーぼうの周りにいる人たちも、なぜか健康でいられると言われています。</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">🥚</div>
+        <div>
+          <div class="stat-title">卵の力、ぼーろの知恵</div>
+          <div class="stat-desc">昔ながらのたまごぼーろは、滋養強壮の食べ物として長く親しまれてきました。まーぼうろは、その伝統をまーぼうの力で更に高めたお菓子です。</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">✨</div>
+        <div>
+          <div class="stat-title">40代男性に贈るご利益</div>
+          <div class="stat-desc">働き盛り、でも体のあちこちが気になりはじめる40代。まーぼうろをひとつまみ、今日も一日ご無事で。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STORY ブランドストーリー -->
+<section class="story" id="story">
+  <div class="container">
+    <div class="story-img">
+      <img src="%E3%81%BE%E3%83%BC%E3%81%BC%E3%81%86%E3%82%8D%E3%80%80%E3%81%B2%E3%82%88%E3%81%93%E7%89%881.png" alt="まーぼう印のたまごぼーろ" />
+    </div>
+    <div>
+      <p class="section-label">Brand Story</p>
+      <h2 class="section-title">名前の由来は、<span>「まーぼう」</span></h2>
+      <p class="section-lead">
+        その名は「まーぼうのたまごぼーろ」から。<br>
+        縮めて、<strong>まーぼうろ</strong>。<br><br>
+        まーぼうは、どこかで見たような、なんだか親しみのある顔をしています。あなたの父親かもしれない。昔の自分かもしれない。そんなまーぼうが、「今日もまあまあ、ちょうどいい一日に」と願いを込めてつくったお菓子です。<br><br>
+        たまごぼーろのやさしい甘さ。ほっこりなつかしい味。40代のあなたが、ふと一息つきたいときのおともに。
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS 商品一覧 -->
+<section class="products" id="products">
+  <div class="container">
+    <div class="products-header">
+      <p class="section-label">Product Lineup</p>
+      <h2 class="section-title">まーぼうろ <span>ラインナップ</span></h2>
+      <p class="section-lead">王道からちょっと変わり種まで。どれもまーぼうの無病息災パワー入り。</p>
+    </div>
+    <div class="products-grid">
+      <!-- プレーン -->
+      <div class="product-card">
+        <img src="%E3%81%BE%E3%83%BC%E3%81%BC%E3%81%86%E3%82%8D%E3%80%80%E3%81%B2%E3%82%88%E3%81%93%E7%89%881.png" alt="まーぼうろ プレーン" />
+        <div class="product-info">
+          <div class="product-tag">王道のやさしい味</div>
+          <div class="product-name">まーぼうろ<br><small style="font-size:.85rem;font-weight:400">プレーン</small></div>
+          <div class="product-desc">とりあえずたまごぼーろ食べとけば大丈夫なやつ。やさしい甘さと、ほろほろ食感のオリジナル。</div>
+          <div class="product-price">¥380 <small>（税込）</small></div>
+          <a href="#buy" class="product-btn">カートに入れる</a>
+        </div>
+      </div>
+      <!-- 深夜2時 -->
+      <div class="product-card">
+        <img src="%E3%81%BE%E3%83%BC%E3%81%BC%E3%81%86%E3%82%8D%E3%80%80%E6%B7%B1%E5%A4%9C2%E6%99%82.png" alt="深夜2時のまーぼうろ" />
+        <div class="product-info">
+          <div class="product-tag">深夜のお供に</div>
+          <div class="product-name">深夜2時の<br>まーぼうろ</div>
+          <div class="product-desc">深夜に食べると、なぜかちょっと人生うまくいくようになる。まーぼうのお墨付き。</div>
+          <div class="product-price">¥420 <small>（税込）</small></div>
+          <a href="#buy" class="product-btn">カートに入れる</a>
+        </div>
+      </div>
+      <!-- がんばった日 -->
+      <div class="product-card">
+        <img src="%E3%81%BE%E3%83%BC%E3%81%BC%E3%81%86%E3%82%8D%E3%80%80%E3%81%B2%E3%82%88%E3%81%93%E7%89%882.png" alt="がんばった日のごほうびボーロ" />
+        <div class="product-info">
+          <div class="product-tag">今日もえらかった！</div>
+          <div class="product-name">がんばった日の<br>ごほうびボーロ</div>
+          <div class="product-desc">今日もえらい。ほんとえらい。これ食べて、もう今日は終わりでいい。まーぼうからのご褒美。</div>
+          <div class="product-price">¥450 <small>（税込）</small></div>
+          <a href="#buy" class="product-btn">カートに入れる</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LINEUP ひよこ版 -->
+<section class="lineup">
+  <div class="container">
+    <div class="lineup-text">
+      <p class="section-label">Full Lineup</p>
+      <h2 class="section-title">とりあえず、<span>これ食べとこ。</span></h2>
+      <p class="section-lead">
+        がんばらない日にも、ちょうどいいおやつ。たまごのやさしい味、ほっこりなつかしい、こどもにも大人にも。<br><br>
+        まーぼうろは、「なんでもない日が、ちょうどいい日になる」おやつです。
+      </p>
+      <a href="#products" class="btn">商品を見る</a>
+    </div>
+    <div>
+      <img src="%E3%81%BE%E3%83%BC%E3%81%BC%E3%81%86%E3%82%8D%E3%80%80%E3%81%B2%E3%82%88%E3%81%93%E7%89%882.png" alt="まーぼうろ ラインナップ" />
+    </div>
+  </div>
+</section>
+
+<!-- SISTERS 姉妹商品 -->
+<section class="sisters" id="sisters">
+  <div class="container">
+    <div>
+      <img src="%E3%81%BE%E3%83%BC%E3%81%BC%E3%81%86%E3%82%8D%E3%80%80%E5%A7%89%E5%A6%B9%E5%95%86%E5%93%81.png" alt="姉妹商品" />
+    </div>
+    <div>
+      <p class="section-label">Sister Products</p>
+      <h2 class="section-title">姉妹商品も、<span>考えてみた。</span></h2>
+      <p class="section-lead">
+        まーぼうの世界は広がる。深夜2時の闇バージョンから、プリン、こくうままーぼうろまで。まーぼうのご利益が、いろんな形になりました。
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- あまいもじゃが -->
+<section class="lineup" style="background:var(--cream);">
+  <div class="container">
+    <div class="lineup-text">
+      <p class="section-label">New Product</p>
+      <h2 class="section-title">砂糖まみれ、<span>まーぼう的おかし。</span></h2>
+      <p class="section-lead">
+        さつまいもフライ × お砂糖。<br>
+        名前は「あまいもじゃが」。<br><br>
+        まーぼうが「これもうまいぞ」と太鼓判を押した、姉妹商品の新顔。ほんのり甘くて、止まらない。
+      </p>
+      <a href="#buy" class="btn">購入する</a>
+    </div>
+    <div>
+      <img src="%E3%81%BE%E3%83%BC%E3%81%BC%E3%81%86%E3%82%8D%E3%80%80%E3%81%82%E3%81%BE%E3%81%84%E3%82%82%E3%81%98%E3%82%83%E3%81%8C.png" alt="あまいもじゃが" />
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="buy">
+  <h2>まーぼうのご利益、<br>受け取りますか。</h2>
+  <p>無病息災を願って。今日もまあまあ、ちょうどいい一日を。</p>
+  <a href="#" class="btn-white">ご注文はこちら</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">まーぼうろ</div>
+  <nav>
+    <ul>
+      <li><a href="#story">ブランドストーリー</a></li>
+      <li><a href="#mubyou">無病息災について</a></li>
+      <li><a href="#products">商品一覧</a></li>
+      <li><a href="#sisters">姉妹商品</a></li>
+    </ul>
+  </nav>
+  <p>まーぼう印のたまごぼーろ「まーぼうろ」</p>
+  <p style="margin-top:8px">© 2024 まーぼうろ All rights reserved.</p>
+</footer>
+
+</body>
+</html>
